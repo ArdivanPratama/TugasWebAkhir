@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Barang;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,10 +16,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})
+    ->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/barang', [Barang::class, 'index'])->name('barang');
+    Route::get('/addbarang', [Barang::class, 'create'])->name('addbarang');
+    Route::post('/addbarang', [Barang::class, 'store'])->name('addbarang');
+    Route::delete('/deletebarang/{id}', [Barang::class, 'destroy'])->name('deletebarang');
+});
+
+require __DIR__ . '/auth.php';

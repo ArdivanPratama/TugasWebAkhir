@@ -10,6 +10,6 @@ class Kategory extends Model
     use HasFactory;
     protected $table = 'kategory';
     protected $fillable = [
-        'nama_barang',
+        'nama_kategory',
     ];
 }

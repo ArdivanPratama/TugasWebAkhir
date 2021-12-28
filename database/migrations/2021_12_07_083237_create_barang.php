@@ -15,8 +15,7 @@ class CreateBarang extends Migration
     {
         Schema::create('kategory', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('nama_barang', 255);
+            $table->string('nama_kategory', 255);
         });
 
         Schema::create('barang', function (Blueprint $table) {
@@ -26,7 +25,6 @@ class CreateBarang extends Migration
             $table->float('harga_barang');
             $table->string('ukuran_barang', 255);
             $table->unsignedBigInteger('kategory_id');
-            $table->text('deskripsi_barang');
 
             $table->foreign('kategory_id')->references('id')->on('kategory')
                 ->onUpdate('cascade')->onDelete('cascade');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\BarangResource;
 use App\Models\Barang as ModelsBarang;
+use App\Models\Kategory;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -13,7 +14,18 @@ class Barang extends Controller
 {
     public function index()
     {
-        return BarangResource::collection(ModelsBarang::orderBy('tahun')->paginate(3));
+        $barang = ModelsBarang::all();
+        return view('layouts/barang', [
+            'barang' => $barang,
+        ]);
+    }
+
+    public function create()
+    {
+        $Kt = Kategory::all();
+        return view('forms.barang.add', [
+            'Kt' => $Kt,
+        ]);
     }
 
     public function store(Request $request)
