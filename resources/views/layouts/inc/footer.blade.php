@@ -1,6 +1,5 @@
-<footer class="main-footer">
+<footer class="main-footer bg-pink text-center">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0-rc
     </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; Tiara Widiastini & Ardivan Pratama <a href="https://adminlte.io"></a>.</strong>
   </footer>

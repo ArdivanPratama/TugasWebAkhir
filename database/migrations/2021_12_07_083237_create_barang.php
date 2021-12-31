@@ -16,15 +16,17 @@ class CreateBarang extends Migration
         Schema::create('kategory', function (Blueprint $table) {
             $table->id();
             $table->string('nama_kategory', 255);
+            $table->timestamps();
         });
 
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('nama_barang', 255);
             $table->float('harga_barang');
             $table->string('ukuran_barang', 255);
+            $table->string('upgambar', 255);
             $table->unsignedBigInteger('kategory_id');
+            $table->timestamps();
 
             $table->foreign('kategory_id')->references('id')->on('kategory')
                 ->onUpdate('cascade')->onDelete('cascade');
@@ -50,6 +52,8 @@ class CreateBarang extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('kategory');
         Schema::dropIfExists('barang');
+        Schema::dropIfExists('transaksi');
     }
 }

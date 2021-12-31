@@ -15,7 +15,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="" class="nav-link{{ Request::is('welcome') ? 'active' : '' }}">
+            <a href="{{route('dashboard')}}" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -23,7 +23,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('barang')}}" class="nav-link{{ Request::is('barang*') ? 'active' : '' }}">
+            <a href="{{route('barang')}}" class="nav-link {{ Request::is('barang*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Barang

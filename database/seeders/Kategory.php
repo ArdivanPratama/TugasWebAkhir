@@ -20,8 +20,5 @@ class JenisBarang extends Seeder
         Barang::create([
             'nama_jenis_barang' => 'Kemeja'
         ]);
-        Barang::create([
-            'nama_jenis_barang' => 'Tuxedo'
-        ]);
     }
 }

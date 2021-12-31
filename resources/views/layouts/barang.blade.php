@@ -27,26 +27,30 @@
     <table class="table p-4 bg-white shadow rounded-lg w-full">
         <thead>
             <tr>
-                <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+                <th class="p-4 text-center">
                     No
                 </th>
-                <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+                <th class="p-4 text-center">
+                    Gambar Barang
+                </th>
+                <th class="p-4 text-center">
                     Nama Barang
                 </th>
-                <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+                <th class="p-4 text-center">
                     Harga Barang
                 </th>
-                <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+                <th class="p-4 text-center">
                     Ukuran Barang
                 </th>
-                <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+                <th class="p-4 text-center">
                     Kategory
                 </th>
-                <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+                <th class="p-4 text-center">
                     Aksi
                 </th>
             </tr>
         </thead>
+
         <tbody>
             @php $no=1 @endphp
             @foreach ($barang as $item) 
@@ -54,24 +58,32 @@
                 <td class="border-b-2 p-4 dark:border-dark-5 text-center">
                     {{$no++}}
                 </td>
+                <td class="text-center">
+                    <img src="{{$item->upgambar}}" alt="image" width="150">
+                    
+                </td>
                 <td class="border-b-2 p-4 dark:border-dark-5 text-center">
                     {{$item->nama_barang}}
-                </td>
-                <td class="border-b-2 p-4 dark:border-dark-5 text-center">
-                    {{$item->Kategory}}
-                </td>
-                <td class="border-b-2 p-4 dark:border-dark-5 text-center">
-                    {{$item->ukuran_barang}}
                 </td>
                 <td class="border-b-2 p-4 dark:border-dark-5 text-center">
                     {{$item->harga_barang}}
                 </td>
                 <td class="border-b-2 p-4 dark:border-dark-5 text-center">
-                    <form action="{{ route('deletebarang', ['id'=>$item->id_barang]) }}" method="POST">
-                    @csrf
-                    @method('delete')
-                    <button type="submit" class="px-3 py-1.5 bg-red-500 rounded">Delete</button>
-                    </form>
+                    {{$item->ukuran_barang}}
+                </td>
+                <td class="border-b-2 p-4 dark:border-dark-5 text-center">
+                    {{ $item->kategory->nama_kategory }}
+                </td>
+                <td class="border-b-2 p-4 dark:border-dark-5 text-center">
+
+                        <a href="{{ route('editbarang', ['id'=>$item->id]) }}" class="px-3 py-1.5 bg-primary rounded">Edit</a>
+                        
+
+                    <form action="{{ route('deletebarang', ['id'=>$item->id]) }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="px-3 py-1.5 bg-danger rounded">Delete</button>
+                        </form>
                 </td>
             </tr>
             @endforeach

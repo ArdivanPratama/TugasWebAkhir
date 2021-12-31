@@ -3,8 +3,9 @@
 @section('content')
     
 <section class="mb-3">
-    <form action="" method="POST" class="mb-5" enctype="multipart/form-data">
+    <form action="{{ route('updatebarang', ['id'=>$barang->id]) }}" method="POST" class="mb-5" enctype="multipart/form-data">
         @csrf
+        @method('put')
         <div class="card">
             <div class="card-body">
                 <h2 class="input-group mb-3">
@@ -12,7 +13,7 @@
                 </h2>
                 <div class="">
                     <div class=" relative ">
-                        <input type="text" id="nama_barang" name="nama_barang" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Nama Barang"/>
+                        <input type="text" value="{{$barang->nama_barang}}" id="nama_barang" name="nama_barang" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Nama Barang"/>
                         @error('nama_barang')
                             {{$message}}
                         @enderror
@@ -31,7 +32,12 @@
                                     
                                 <option selected disabled>Kategory</option>
                                 @foreach ($Kt as $item)
+                                @if ($item->id==$barang->kategory_id)
+                                <option selected='selected' value="{{$item->id}}">{{$item->nama_kategory}}</option>
+                                @else
                                 <option value="{{$item->id}}">{{$item->nama_kategory}}</option>
+                                @endif
+                                
                                 @endforeach
                                     
                                 </select>
@@ -42,7 +48,7 @@
                     </div>
                     <div>
                         <div class=" relative ">
-                            <input type="text" id="ukuran_barang" name="ukuran_barang" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Ukuran"/>
+                            <input value="{{$barang->ukuran_barang}}" type="text" id="ukuran_barang" name="ukuran_barang" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Ukuran"/>
                             @error('ukuran_barang')
                             {{$message}}
                             @enderror
@@ -66,7 +72,7 @@
                 </h2>
                 <div class="w-full max-w-sm pl-2 mx-auto space-y-5 md:w-5/12 md:pl-9 md:inline-flex">
                     <div class=" relative ">
-                        <input type="number" id="harga_barang" name="harga_barang" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Harga"/>
+                        <input value="{{$barang->harga_barang}}" type="number" id="harga_barang" name="harga_barang" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Harga"/>
                         @error('harga_barang')
                         {{$message}}
                         @enderror
